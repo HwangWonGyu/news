@@ -16,6 +16,8 @@
 [프로토타입 (ovenapp 활용)](https://ovenapp.io/view/wp8c3hZx9oYXGnwD4AWbaX0Zz3NKWFxw/)
 (링크가 안된다면 하단의 '서비스 참고 이미지'를 확인바람)
 
+## DB ERD
+![news_ERD](https://user-images.githubusercontent.com/15853498/102218071-cca80980-3f20-11eb-86e7-18c4eb7ac0eb.PNG)
 
 ## 서비스 참고 이미지
 <div>
