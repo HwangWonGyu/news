@@ -10,6 +10,7 @@
 원하는 기사를 찾아볼 수도 있게 구성함
 * 뉴스 기자들에게는 기사를 관리할 수 있도록 구성함
 * 일반적인 포털기반의 뉴스사이트에서 접하기 어려운 지역 언론사의 기사들은 공공데이터를 활용해 보완
-[공공데이터 참고 사이트] (https://www.data.go.kr/data/15034926/openapi.do)
 
-[프로토타입 (ovenapp 활용)] (https://ovenapp.io/view/wp8c3hZx9oYXGnwD4AWbaX0Zz3NKWFxw/)
+[공공데이터 참고 사이트](https://www.data.go.kr/data/15034926/openapi.do)
+
+[프로토타입 (ovenapp 활용)](https://ovenapp.io/view/wp8c3hZx9oYXGnwD4AWbaX0Zz3NKWFxw/)
