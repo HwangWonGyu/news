@@ -14,7 +14,7 @@
 [공공데이터 참고 사이트](https://www.data.go.kr/data/15034926/openapi.do)
 
 [프로토타입 (ovenapp 활용)](https://ovenapp.io/view/wp8c3hZx9oYXGnwD4AWbaX0Zz3NKWFxw/)
-(링크가 안된다면 하단의 '서비스 참고 이미지'를 확인바람)
+(링크가 안된다면 하단의 ['서비스 참고 이미지'](https://github.com/HwangWonGyu/news#%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%B0%B8%EA%B3%A0-%EC%9D%B4%EB%AF%B8%EC%A7%80)를 확인바람)
 
 ## DB ERD
 ![news_ERD](https://user-images.githubusercontent.com/15853498/102218071-cca80980-3f20-11eb-86e7-18c4eb7ac0eb.PNG)
