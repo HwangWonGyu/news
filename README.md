@@ -33,7 +33,7 @@
 https://github.com/HwangWonGyu/news/wiki/Use-Case
 
 ## DB ERD
-![news_ERD](https://user-images.githubusercontent.com/15853498/102218071-cca80980-3f20-11eb-86e7-18c4eb7ac0eb.PNG)
+![ERD](https://user-images.githubusercontent.com/15853498/102389829-02c7b500-4017-11eb-8fbd-775686c1af80.PNG)
 
 ## 서비스화면 이미지
 <div>
