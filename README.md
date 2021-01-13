@@ -1,5 +1,7 @@
 # news
 
+***Italic Font*** : 구체적 표현으로 개선이 필요한 부분을 표시
+
 ## 목적
 * 뉴스 서비스를 직접 구현해보며 ***백엔드***를 이해
 * ***의미 있고*** 가독성 높은 코드를 작성
@@ -20,7 +22,7 @@
 나머지 남은 기사 중에서도 3개를 무작위로 선택해 표시
 * 섹션은 총 7개로 뉴스홈, 정치, 경제, 사회, 생활/문화, 세계, IT/과학이 있음
 * ***언론사는 총 N개로 ~가 있음***
-* ***총 등록 사용자수 N명, 트래픽량, 초단위 혹은 월단위 엑세스 X~Y개, 서버 하드웨어 대수 등 현재 기대하는 서비스 규모에 따른 구체적인 명세가 필요한 상황
+* ***총 등록 사용자수 N명, 트래픽량, 초단위 혹은 월단위 엑세스 X~Y개, 서버 하드웨어 대수 등 현재 기대하는 서비스 규모에 따른 구체적인 명세가 필요한 상황***
 
 
 [공공데이터 참고 사이트](https://www.data.go.kr/data/15034926/openapi.do)
@@ -34,19 +36,3 @@ https://github.com/HwangWonGyu/news/wiki/Use-Case
 
 ## DB ERD
 ![ERD](https://user-images.githubusercontent.com/15853498/102389829-02c7b500-4017-11eb-8fbd-775686c1af80.PNG)
-
-## 서비스화면 이미지
-<div>
-  <img width="400" src="https://user-images.githubusercontent.com/15853498/102216864-20b1ee80-3f1f-11eb-9e26-ddab43e8b7bb.PNG">
-  <img width="400" src="https://user-images.githubusercontent.com/15853498/102217022-5a82f500-3f1f-11eb-8c3d-3ef4e4852259.PNG">
-  <img width="400" src="https://user-images.githubusercontent.com/15853498/102216823-109a0f00-3f1f-11eb-91cc-69e6c9979f48.PNG">
-  <img width="400" src="https://user-images.githubusercontent.com/15853498/102217064-68387a80-3f1f-11eb-9998-d11f3197b1d9.PNG">
-  <img width="400" src="https://user-images.githubusercontent.com/15853498/102217097-6f5f8880-3f1f-11eb-99b1-018039869b9c.PNG">
-  <img width="400" src="https://user-images.githubusercontent.com/15853498/102217120-77b7c380-3f1f-11eb-9e9f-6d6f64434d75.PNG">
-  <img width="400" src="https://user-images.githubusercontent.com/15853498/102217149-7eded180-3f1f-11eb-91b1-9ca23351cd48.PNG">
-  <img width="400" src="https://user-images.githubusercontent.com/15853498/102217154-81412b80-3f1f-11eb-8923-447d90bfc1a4.PNG">
-  <img width="400" src="https://user-images.githubusercontent.com/15853498/102217165-869e7600-3f1f-11eb-89cd-9cb64c492e78.PNG">
-  <img width="400" src="https://user-images.githubusercontent.com/15853498/102217169-8900d000-3f1f-11eb-93c4-1597d97fddc5.PNG">
-  <img width="400" src="https://user-images.githubusercontent.com/15853498/102217177-8bfbc080-3f1f-11eb-8093-b3bcd5a67f58.PNG">
-  <img width="400" src="https://user-images.githubusercontent.com/15853498/102217183-8dc58400-3f1f-11eb-944a-ab1fdb867631.PNG">
-</div>
