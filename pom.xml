@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.hwangwongyu</groupId>
-	<artifactId>web-bulletin-board-study</artifactId>
+	<artifactId>news</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>web-bulletin-board-study</name>
-	<description>Web Bulletin Board by Spring Boot MySQL, MyBatis and Thymeleaf</description>
+	<name>news</name>
+	<description>News Service</description>
 
 	<properties>
 		<java.version>1.8</java.version>

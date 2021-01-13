@@ -1,13 +1,12 @@
-package com.hwangwongyu.webbulletinboardstudy;
+package com.hwangwongyu.news;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WebBulletinBoardStudyApplication {
+public class NewsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebBulletinBoardStudyApplication.class, args);
+		SpringApplication.run(NewsApplication.class, args);
 	}
-
 }
