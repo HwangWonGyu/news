@@ -19,32 +19,32 @@ public class UserController {
     private String indexURL;
 
 
-    @GetMapping("/allusers")
+    @GetMapping("/users")
     public List<UserDTO> allUsers() {
         return userService.allUsers();
     }
 
-    @PostMapping("/user")
-    public String addUser(UserDTO user)
+    @PostMapping("/users")
+    public String addUser(@RequestBody UserDTO user)
     {
         userService.addUser(user);
         return "redirect:" + indexURL;
     }
 
-    @PutMapping("/user")
-    public String updateUser(UserDTO user) {
+    @PutMapping("/users")
+    public String updateUser(@RequestBody UserDTO user) {
         userService.updateUser(user);
         return "redirect:" + indexURL;
     }
 
-    @DeleteMapping("/user")
-    public String deleteUser(String loginId)
+    @DeleteMapping("/users")
+    public String deleteUser(@RequestBody UserDTO user)
     {
-        userService.deleteUser(loginId);
+        userService.deleteUser(user.getLoginId());
         return "redirect:" + indexURL;
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/users/{id}")
     public UserDTO findUserById(@PathVariable long id)
     {
         UserDTO user = userService.findUserById(id);
