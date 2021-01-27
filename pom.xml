@@ -39,6 +39,12 @@
 			<version>2.1.4</version>
 		</dependency>
 
+		<!--Bean Validation-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
 		<!-- DB -->
 		<dependency>
 			<groupId>mysql</groupId>

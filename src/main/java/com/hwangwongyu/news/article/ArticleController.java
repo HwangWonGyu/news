@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 public class ArticleController {
 
@@ -17,7 +19,7 @@ public class ArticleController {
     private String newsHomeURL;
 
     @PostMapping("/articles")
-    public String addArticle(@RequestBody ArticleDTO article, BindingResult result) {
+    public String addArticle(@Valid @RequestBody ArticleDTO article, BindingResult result) {
         if (result.hasErrors()) {
             return "articles/createOrUpdateArticleForm";
         } else {
@@ -34,4 +36,5 @@ public class ArticleController {
         else
             return null;
     }
+
 }
