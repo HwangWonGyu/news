@@ -40,8 +40,6 @@ public class LoginController {
             return new ResponseEntity<String>("계정정보가 일치하지 않습니다.", HttpStatus.UNAUTHORIZED);
         } else {
             userLoginInfoRedisTemplate.opsForHash().put("user", "1", userLoginInfo);
-            Object hashValue = userLoginInfoRedisTemplate.opsForHash().get("user", "1");
-            UserLoginInfo user = objectMapper.convertValue(hashValue, UserLoginInfo.class);
             return new ResponseEntity<String>("로그인 성공", HttpStatus.OK);
         }
     }
