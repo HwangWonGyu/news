@@ -1,5 +1,6 @@
 package com.hwangwongyu.news.user;
 
+import com.hwangwongyu.news.redis.UserLoginInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,4 +40,17 @@ public class UserServiceImpl implements UserService {
     public UserDTO findUserById(long id) {
         return userMapper.findUserById(id);
     }
+
+    @Override
+    public UserDTO loginUser(UserLoginInfo userLoginInfo) {
+        String password = userMapper.getPassword(userLoginInfo.getLoginId());
+
+        if (password == null || userLoginInfo.getPassword().equals(password) == false ) {
+            return null;
+        }
+
+        UserDTO userDTO = userMapper.findUser(userLoginInfo);
+        return userDTO;
+    }
+
 }
