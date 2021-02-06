@@ -1,17 +1,19 @@
 package com.hwangwongyu.news.user;
 
 import com.hwangwongyu.news.redis.UserLoginInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
 
-    UserServiceImpl(UserMapper userMapper)
-    {
+    @Autowired
+    public UserServiceImpl(UserMapper userMapper) {
         this.userMapper = userMapper;
     }
 
@@ -21,8 +23,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer addUser(UserDTO user)
-    {
+    public Integer addUser(UserDTO user) {
         return userMapper.addUser(user);
     }
 
@@ -43,14 +44,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO loginUser(UserLoginInfo userLoginInfo) {
-        String password = userMapper.getPassword(userLoginInfo.getLoginId());
 
-        if (password == null || userLoginInfo.getPassword().equals(password) == false ) {
+        String matchedPassword =
+                Optional.ofNullable(userMapper.getPassword(userLoginInfo.getLoginId()))
+                        .filter(o -> o.equals(userLoginInfo.getPassword()))
+                        .orElse("");
+
+        if (matchedPassword.isEmpty()) {
             return null;
+        } else {
+            return userMapper.findUser(userLoginInfo);
         }
 
-        UserDTO userDTO = userMapper.findUser(userLoginInfo);
-        return userDTO;
     }
 
 }
