@@ -37,10 +37,10 @@ public class LoginController {
     public ResponseEntity<String> login(@RequestBody UserLoginInfo userLoginInfo) {
         UserDTO loginUser = userService.loginUser(userLoginInfo);
         if (loginUser == null) {
-            return new ResponseEntity<String>("계정정보가 일치하지 않습니다.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("계정정보가 일치하지 않습니다.", HttpStatus.UNAUTHORIZED);
         } else {
             userLoginInfoRedisTemplate.opsForHash().put("user", "1", userLoginInfo);
-            return new ResponseEntity<String>("로그인 성공", HttpStatus.OK);
+            return new ResponseEntity<>("로그인 성공", HttpStatus.OK);
         }
     }
 
