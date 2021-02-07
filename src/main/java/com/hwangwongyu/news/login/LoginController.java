@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 public class LoginController {
 
@@ -32,13 +34,17 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserLoginInfo userLoginInfo) {
+    public ResponseEntity<String> login(@RequestBody UserLoginInfo userLoginInfo, HttpSession httpSession) {
         UserDTO loginUser = userService.loginUser(userLoginInfo);
         if (loginUser == null) {
             return new ResponseEntity<>("계정정보가 일치하지 않습니다.", HttpStatus.UNAUTHORIZED);
         } else {
-            userLoginInfoRedisTemplate.opsForHash().put("user", "1", userLoginInfo);
-            return new ResponseEntity<>("로그인 성공", HttpStatus.OK);
+            if (httpSession.getAttribute("userLoginInfo") != null) {
+                return new ResponseEntity<>("이미 로그인된 상태입니다.", HttpStatus.OK);
+            } else {
+                httpSession.setAttribute("userLoginInfo", userLoginInfo);
+                return new ResponseEntity<>("로그인 성공", HttpStatus.OK);
+            }
         }
     }
 
