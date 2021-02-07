@@ -1,13 +1,13 @@
 package com.hwangwongyu.news.user;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-@Setter
 @Getter
 @ToString
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserDTO {
 
     @Getter
@@ -17,22 +17,12 @@ public class UserDTO {
         FEMALE
     }
 
-    String loginId;
-    String name;
-    LocalDate birthDate;
-    Sex sex;
-    String password;
-    String nickname;
-    String phoneNumber;
-
-    @Builder
-    private UserDTO(String loginId, String name, LocalDate birthDate, Sex sex, String password, String nickname, String phoneNumber) {
-        this.loginId = loginId;
-        this.name = name;
-        this.birthDate = birthDate;
-        this.sex = sex;
-        this.password = password;
-        this.nickname = nickname;
-        this.phoneNumber = phoneNumber;
-    }
+    private String loginId;
+    private String name;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthDate;
+    private Sex sex;
+    private String password;
+    private String nickname;
+    private String phoneNumber;
 }
