@@ -3,6 +3,8 @@ package com.hwangwongyu.news.user;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -49,9 +51,9 @@ public class UserController {
     {
         UserDTO user = userService.findUserById(id);
         if(user != null)
-            return user;
+            return new ResponseEntity(user, HttpStatus.OK);
         else
-            return null;
+            return new ResponseEntity("유저 정보가 없습니다", HttpStatus.NOT_FOUND);
     }
 
 
