@@ -20,9 +20,6 @@ public class LoginController {
     @Autowired
     private UserLoginInfo userLoginInfo;
 
-    @Autowired
-    private RedisTemplate<String, UserLoginInfo> userLoginInfoRedisTemplate;
-
     private final UserService userService;
 
     private final ObjectMapper objectMapper;
