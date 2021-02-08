@@ -5,59 +5,42 @@
 <mapper namespace="com.hwangwongyu.news.user.UserMapper">
 
     <select id="allUsers" resultType="UserDTO">
-            SELECT
-                loginId, name, birthDate, sex, password, nickname, phoneNumber
-            FROM
-                user
+            SELECT  loginId, name, birthDate, sex, password, nickname, phoneNumber
+            FROM    user
     </select>
 
-    <insert id="addUser"
-            parameterType="UserDTO"
-            >
-            INSERT INTO
-                user (loginId, name, birthDate, sex, password, nickname
+    <insert id="addUser" parameterType="UserDTO">
+            INSERT INTO user (loginId, name, birthDate, sex, password, nickname
                 <if test="phoneNumber != null and !phoneNumber.equals('')">
                     , phoneNumber
                 </if>
                 )
-            VALUES
-                (#{loginId}, #{name}, #{birthDate}, #{sex}, #{password}, #{nickname}
+            VALUES (#{loginId}, #{name}, #{birthDate}, #{sex}, #{password}, #{nickname}
                 <if test="phoneNumber != null and !phoneNumber.equals('')">
                     , #{phoneNumber}
                 </if>
                 )
     </insert>
 
-    <update id="updateUser"
-            parameterType="UserDTO">
-            UPDATE
-                user
+    <update id="updateUser" parameterType="UserDTO">
+            UPDATE user
             <trim prefix="SET" suffixOverrides=",">
                 <if test="phoneNumber != null and !phoneNumber.equals('')">phoneNumber=#{phoneNumber},</if>
                 <if test="password != null and !password.equals('')">password=#{password},</if>
                 <if test="nickname != null and !nickname.equals('')">nickname=#{nickname},</if>
             </trim>
-            WHERE
-                loginId = #{loginId}
+            WHERE loginId = #{loginId}
     </update>
 
-    <delete id="deleteUser"
-            parameterType="string">
-            DELETE FROM
-                user
-            WHERE
-                loginId = #{loginId}
+    <delete id="deleteUser" parameterType="string">
+            DELETE FROM user
+            WHERE       loginId = #{loginId}
     </delete>
 
-    <select id="findUserById"
-            parameterType="long"
-            resultType="UserDTO">
-            SELECT
-                id, loginId, name, birthDate, sex, password, nickname, phoneNumber
-            FROM
-                user
-            WHERE
-                id = #{id}
+    <select id="findUserById" parameterType="long" resultType="UserDTO">
+            SELECT  id, loginId, name, birthDate, sex, password, nickname, phoneNumber
+            FROM    user
+            WHERE   id = #{id}
     </select>
 
     <select id="getPassword" parameterType="String" resultType="String">
