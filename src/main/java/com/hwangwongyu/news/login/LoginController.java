@@ -24,7 +24,6 @@ public class LoginController {
 
     private final ObjectMapper objectMapper;
 
-    @Autowired
     public LoginController(UserService userService, ObjectMapper objectMapper) {
         this.userService = userService;
         this.objectMapper = objectMapper;
