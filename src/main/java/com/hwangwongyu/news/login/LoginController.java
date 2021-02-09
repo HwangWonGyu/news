@@ -5,7 +5,7 @@ import com.hwangwongyu.news.redis.UserLoginInfo;
 import com.hwangwongyu.news.user.UserDTO;
 import com.hwangwongyu.news.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +19,9 @@ public class LoginController {
 
     @Autowired
     private UserLoginInfo userLoginInfo;
+
+    @Value("${spring.webservice.newsHome}")
+    private String newsHomeURL;
 
     private final UserService userService;
 
@@ -44,6 +47,11 @@ public class LoginController {
         }
     }
 
+    @PostMapping("/logout")
+    public String logout(HttpSession httpSession) {
+        userService.logout(httpSession);
+        return "redirect:" + newsHomeURL;
+    }
 
 }
 

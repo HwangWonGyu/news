@@ -4,6 +4,7 @@ import com.hwangwongyu.news.redis.UserLoginInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,6 +57,11 @@ public class UserServiceImpl implements UserService {
             return userMapper.findUser(userLoginInfo);
         }
 
+    }
+
+    @Override
+    public void logout(HttpSession httpSession) {
+        httpSession.invalidate();
     }
 
 }
