@@ -20,4 +20,6 @@ public interface UserService {
     UserDTO loginUser(UserLoginInfo userLoginInfo);
 
     void logout(HttpSession httpSession);
+
+    Boolean emailAuth(String toEmail);
 }

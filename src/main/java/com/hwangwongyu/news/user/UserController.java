@@ -12,8 +12,7 @@ public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService)
-    {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -27,8 +26,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public String addUser(@RequestBody UserDTO user)
-    {
+    public String addUser(@RequestBody UserDTO user) {
         userService.addUser(user);
         return "redirect:" + indexURL;
     }
@@ -40,24 +38,28 @@ public class UserController {
     }
 
     @DeleteMapping("/users")
-    public String deleteUser(@RequestBody UserDTO user)
-    {
+    public String deleteUser(@RequestBody UserDTO user) {
         userService.deleteUser(user.getLoginId());
         return "redirect:" + indexURL;
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity findUserById(@PathVariable long id)
-    {
+    public ResponseEntity findUserById(@PathVariable long id) {
         UserDTO user = userService.findUserById(id);
-        if(user != null)
+        if (user != null)
             return new ResponseEntity(user, HttpStatus.OK);
         else
             return new ResponseEntity("유저 정보가 없습니다", HttpStatus.NOT_FOUND);
     }
 
-
-
+    @PostMapping("/users/email")
+    public ResponseEntity emailAuth(String toEmail) {
+        Boolean success = userService.emailAuth(toEmail);
+        if(success)
+            return new ResponseEntity("이메일로 코드가 전송 됐습니다.", HttpStatus.OK);
+        else
+            return new ResponseEntity("이메일 전송에 실패했습니다.", HttpStatus.NOT_FOUND);
+    }
 
 
 }
