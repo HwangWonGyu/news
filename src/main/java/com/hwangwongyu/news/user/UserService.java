@@ -1,5 +1,8 @@
 package com.hwangwongyu.news.user;
 
+import com.hwangwongyu.news.redis.UserLoginInfo;
+
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public interface UserService {
@@ -13,4 +16,8 @@ public interface UserService {
     Integer deleteUser(String loginId);
 
     UserDTO findUserById(long id);
+
+    UserDTO loginUser(UserLoginInfo userLoginInfo);
+
+    void logout(HttpSession httpSession);
 }

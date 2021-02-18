@@ -43,4 +43,16 @@
             WHERE   id = #{id}
     </select>
 
+    <select id="getPassword" parameterType="String" resultType="String">
+        SELECT password
+        FROM user
+        WHERE loginId = #{loginId}
+    </select>
+
+    <select id="findUser" parameterType="UserLoginInfo" resultType="UserDTO">
+        SELECT id, loginId, name, birthDate, sex, password, nickname, phoneNumber
+        FROM user
+        WHERE loginId = #{loginId} AND password = #{password}
+    </select>
+
 </mapper>
