@@ -55,11 +55,15 @@ public class UserController {
     @PostMapping("/users/email")
     public ResponseEntity emailAuth(String toEmail) {
         Boolean success = userService.emailAuth(toEmail);
-        if(success)
+        if (success)
             return new ResponseEntity("이메일로 코드가 전송 됐습니다.", HttpStatus.OK);
         else
             return new ResponseEntity("이메일 전송에 실패했습니다.", HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/companies")
+    public List<String> allCompanies() {
+        return userService.allCompanies();
+    }
 
 }

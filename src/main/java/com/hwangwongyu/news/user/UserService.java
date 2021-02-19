@@ -22,4 +22,6 @@ public interface UserService {
     void logout(HttpSession httpSession);
 
     Boolean emailAuth(String toEmail);
+
+    List<String> allCompanies();
 }

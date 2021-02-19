@@ -21,4 +21,6 @@ public interface UserMapper {
     String getPassword(String loginId);
 
     UserDTO findUser(UserLoginInfo userLoginInfo);
+
+    List<String> allCompanies();
 }

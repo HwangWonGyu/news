@@ -111,5 +111,10 @@ public class UserServiceImpl implements UserService {
         return stringBuilder.toString();
     }
 
+    @Override
+    public List<String> allCompanies() {
+        return userMapper.allCompanies();
+    }
+
 
 }
