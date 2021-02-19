@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean emailAuth(String toEmail) {
+    public Boolean emailAuthN(String toEmail) {
 
         MimeMessagePreparator preparator = mimeMessage -> {
             mimeMessage.setRecipient(Message.RecipientType.TO,
@@ -84,8 +84,6 @@ public class UserServiceImpl implements UserService {
             mimeMessage.setSubject("뉴스 서비스 - 기자 인증코드");
             mimeMessage.setText(randomAuthCode(authDigitNumberSize));
         };
-
-        // 인증 O, X 여부를 사용자 테이블에 TRUE/FALSE로 저장하는 구조로 변경할 것
 
         try {
             this.mailSender.send(preparator);
