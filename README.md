@@ -32,8 +32,6 @@
 
 [프로토타입 (ovenapp 활용)](https://ovenapp.io/view/wp8c3hZx9oYXGnwD4AWbaX0Zz3NKWFxw/)
 
-[서비스화면 이미지](https://github.com/HwangWonGyu/news#%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%B0%B8%EA%B3%A0-%EC%9D%B4%EB%AF%B8%EC%A7%80)
-
 ## Specification
 - Java 8
 - Spring Boot 2.4.1
