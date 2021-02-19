@@ -5,7 +5,7 @@
 <mapper namespace="com.hwangwongyu.news.user.UserMapper">
 
     <select id="allUsers" resultType="UserDTO">
-            SELECT  loginId, name, birthDate, sex, password, nickname, phoneNumber
+            SELECT  loginId, name, birthDate, sex, password, nickname, phoneNumber, isReporter
             FROM    user
     </select>
 
@@ -14,11 +14,13 @@
                 <if test="phoneNumber != null and !phoneNumber.equals('')">
                     , phoneNumber
                 </if>
+                , isReporter
                 )
             VALUES (#{loginId}, #{name}, #{birthDate}, #{sex}, #{password}, #{nickname}
                 <if test="phoneNumber != null and !phoneNumber.equals('')">
                     , #{phoneNumber}
                 </if>
+                , #{isReporter}
                 )
     </insert>
 
@@ -38,7 +40,7 @@
     </delete>
 
     <select id="findUserById" parameterType="long" resultType="UserDTO">
-            SELECT  id, loginId, name, birthDate, sex, password, nickname, phoneNumber
+            SELECT  id, loginId, name, birthDate, sex, password, nickname, phoneNumber, isReporter
             FROM    user
             WHERE   id = #{id}
     </select>
@@ -50,7 +52,7 @@
     </select>
 
     <select id="findUser" parameterType="UserLoginInfo" resultType="UserDTO">
-        SELECT id, loginId, name, birthDate, sex, password, nickname, phoneNumber
+        SELECT id, loginId, name, birthDate, sex, password, nickname, phoneNumber, isReporter
         FROM user
         WHERE loginId = #{loginId} AND password = #{password}
     </select>
