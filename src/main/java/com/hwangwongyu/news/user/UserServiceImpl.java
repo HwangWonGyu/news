@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean emailAuthN(String toEmail) {
+    public Boolean sendEmailAuthNCode(String toEmail) {
 
         MimeMessagePreparator preparator = mimeMessage -> {
             mimeMessage.setRecipient(Message.RecipientType.TO,

@@ -53,8 +53,8 @@ public class UserController {
     }
 
     @PostMapping("/users/email")
-    public ResponseEntity emailAuthN(String toEmail) {
-        Boolean success = userService.emailAuthN(toEmail);
+    public ResponseEntity sendEmailAuthNCode(String toEmail) {
+        Boolean success = userService.sendEmailAuthNCode(toEmail);
         if (success)
             return new ResponseEntity("이메일로 코드가 전송 됐습니다.", HttpStatus.OK);
         else
