@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     private final JavaMailSender mailSender;
 
     @Value("${spring.mail.auth-digit-number-size}")
-    private Integer authDigitNumberSize;
+    private Integer authNDigitNumberSize;
 
     public UserServiceImpl(UserMapper userMapper, JavaMailSender mailSender) {
         this.userMapper = userMapper;
@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
             mimeMessage.setRecipient(Message.RecipientType.TO,
                     new InternetAddress(toEmail));
             mimeMessage.setSubject("뉴스 서비스 - 기자 인증코드");
-            mimeMessage.setText(randomAuthCode(authDigitNumberSize));
+            mimeMessage.setText(randomAuthNCode(authNDigitNumberSize));
         };
 
         try {
@@ -96,13 +96,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    private String randomAuthCode(int size) {
+    private String randomAuthNCode(int authNDigitNumberSize) {
         Random random = new Random(System.currentTimeMillis());
         StringBuilder stringBuilder = new StringBuilder();
         int num = 0;
 
-        while(stringBuilder.length() < size) {
-            num = random.nextInt(10);
+        while(stringBuilder.length() < authNDigitNumberSize) { // 파라미터인 '자리수' 도달까지 루프
+            num = random.nextInt(10); // 0 ~ bound-1 범위 정수 추출
             stringBuilder.append(num);
         }
 
