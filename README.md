@@ -49,23 +49,7 @@ https://github.com/HwangWonGyu/news/wiki/Use-Case
 
 [git commit 메시지 컨벤션](https://beststar-1.tistory.com/11)
 
-[git pull request 컨벤션 참고 사이트](https://github.blog/2015-01-21-how-to-write-the-perfect-pull-request/)
-
-PR을 시작하는 법
-* PR의 목적을 한문장으로 요약하기
-* PR을 생성하게된 맥락이 있는데 이를 리뷰어가 알아야 한다면 함께 명시
-* 피드백 받기를 원하는 시점을 명시
-* 요청한 PR이 작업중이라면 리뷰어들이 알 수 있도록 '작업중' 혹은 'WIP(Work In Progress)' 라고 기재
-* 원하는 피드백의 방향과 내용을 리뷰어가 알 수 있도록 명시
-* 짧은 답변이라도 어조를 명확히 하기 위해 이모지 사용
-
-피드백에 응답하는 방법
-* 피드백에 대한 감사의 표현
-* 이해가 안됐을 경우 리뷰어에게 명확히 표현 할 수 있도록 이끌어내기
-* 문제 해결법 피드백에 대한 응답이라면 그 해결법에 도달하기 위해 내린 결정에 대해 설명
-* 최대한 모든 피드백에 대해 응답
-* 혼란이나 논쟁이 증가하고 있다면 쓰여진 단어가 의사소통에 좋은건지 검토
-* 항상 코멘트로 해결하기 보다는 화상회의나 오프라인 토론 후 요약글을 게시하는 것도 고려
+[git pull request 컨벤션](https://beststar-1.tistory.com/12)
 
 ## DB ERD
 ![ERD](https://user-images.githubusercontent.com/15853498/102389829-02c7b500-4017-11eb-8fbd-775686c1af80.PNG)
