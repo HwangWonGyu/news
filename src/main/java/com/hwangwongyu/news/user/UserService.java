@@ -17,6 +17,10 @@ public interface UserService {
 
     UserDTO findUserById(long id);
 
+    UserDTO findUserByLoginId(String loginId);
+
+    UserDTO findUserByNickname(String nickname);
+
     UserDTO loginUser(UserLoginInfo userLoginInfo);
 
     void logout(HttpSession httpSession);

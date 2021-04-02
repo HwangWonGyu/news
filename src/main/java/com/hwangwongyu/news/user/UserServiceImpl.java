@@ -2,6 +2,7 @@ package com.hwangwongyu.news.user;
 
 import com.hwangwongyu.news.redis.UserLoginInfo;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -35,7 +36,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer addUser(UserDTO user) {
+    public Integer addUser(UserDTO user) throws DuplicateKeyException {
+        UserDTO sameLoginIdUser = userMapper.findUserByLoginId(user.getLoginId());
+        if (sameLoginIdUser != null) {
+            throw new DuplicateKeyException("이미 등록된 아이디 입니다.");
+        }
+
+        UserDTO sameNicknameUser = userMapper.findUserByNickname(user.getNickname());
+        if (sameNicknameUser != null) {
+            throw new DuplicateKeyException("이미 등록된 닉네임 입니다.");
+        }
+
         return userMapper.addUser(user);
     }
 
@@ -52,6 +63,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO findUserById(long id) {
         return userMapper.findUserById(id);
+    }
+
+    @Override
+    public UserDTO findUserByLoginId(String loginId) {
+        return userMapper.findUserByLoginId(loginId);
+    }
+
+    @Override
+    public UserDTO findUserByNickname(String nickname) {
+        return userMapper.findUserByNickname(nickname);
     }
 
     @Override
@@ -88,8 +109,7 @@ public class UserServiceImpl implements UserService {
         try {
             this.mailSender.send(preparator);
             return true;
-        }
-        catch (MailException ex) {
+        } catch (MailException ex) {
             return false;
             // 예외 관리를 한곳에서 용이하게 하기 위해 Global level에서 처리하는 것으로 개선
             // 에러 로깅 시스템 도입 작업시 이 부분을 로깅 도입으로 개선
@@ -101,7 +121,7 @@ public class UserServiceImpl implements UserService {
         StringBuilder stringBuilder = new StringBuilder();
         int num = 0;
 
-        while(stringBuilder.length() < authNDigitNumberSize) { // 파라미터인 '자리수' 도달까지 루프
+        while (stringBuilder.length() < authNDigitNumberSize) { // 파라미터인 '자리수' 도달까지 루프
             num = random.nextInt(10); // 0 ~ bound-1 범위 정수 추출
             stringBuilder.append(num);
         }
