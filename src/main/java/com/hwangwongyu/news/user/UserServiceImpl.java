@@ -1,33 +1,20 @@
 package com.hwangwongyu.news.user;
 
 import com.hwangwongyu.news.redis.UserLoginInfo;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DuplicateKeyException;
-import org.springframework.mail.MailException;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
-import javax.mail.Message;
-import javax.mail.internet.InternetAddress;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
 
-    private final JavaMailSender mailSender;
-
-    @Value("${spring.mail.auth-digit-number-size}")
-    private Integer authNDigitNumberSize;
-
-    public UserServiceImpl(UserMapper userMapper, JavaMailSender mailSender) {
+    public UserServiceImpl(UserMapper userMapper) {
         this.userMapper = userMapper;
-        this.mailSender = mailSender;
     }
 
     @Override
@@ -95,44 +82,5 @@ public class UserServiceImpl implements UserService {
     public void logout(HttpSession httpSession) {
         httpSession.invalidate();
     }
-
-    @Override
-    public Boolean sendEmailAuthNCode(String toEmail) {
-
-        MimeMessagePreparator preparator = mimeMessage -> {
-            mimeMessage.setRecipient(Message.RecipientType.TO,
-                    new InternetAddress(toEmail));
-            mimeMessage.setSubject("뉴스 서비스 - 기자 인증코드");
-            mimeMessage.setText(randomAuthNCode(authNDigitNumberSize));
-        };
-
-        try {
-            this.mailSender.send(preparator);
-            return true;
-        } catch (MailException ex) {
-            return false;
-            // 예외 관리를 한곳에서 용이하게 하기 위해 Global level에서 처리하는 것으로 개선
-            // 에러 로깅 시스템 도입 작업시 이 부분을 로깅 도입으로 개선
-        }
-    }
-
-    private String randomAuthNCode(int authNDigitNumberSize) {
-        Random random = new Random(System.currentTimeMillis());
-        StringBuilder stringBuilder = new StringBuilder();
-        int num = 0;
-
-        while (stringBuilder.length() < authNDigitNumberSize) { // 파라미터인 '자리수' 도달까지 루프
-            num = random.nextInt(10); // 0 ~ bound-1 범위 정수 추출
-            stringBuilder.append(num);
-        }
-
-        return stringBuilder.toString();
-    }
-
-    @Override
-    public List<String> allCompanies() {
-        return userMapper.allCompanies();
-    }
-
 
 }

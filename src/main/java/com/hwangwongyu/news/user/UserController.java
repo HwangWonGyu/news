@@ -52,18 +52,4 @@ public class UserController {
             return new ResponseEntity("유저 정보가 없습니다", HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/users/email")
-    public ResponseEntity sendEmailAuthNCode(String toEmail) {
-        Boolean success = userService.sendEmailAuthNCode(toEmail);
-        if (success)
-            return new ResponseEntity("이메일로 코드가 전송 됐습니다.", HttpStatus.OK);
-        else
-            return new ResponseEntity("이메일 전송에 실패했습니다.", HttpStatus.NOT_FOUND);
-    }
-
-    @GetMapping("/companies")
-    public List<String> allCompanies() {
-        return userService.allCompanies();
-    }
-
 }
