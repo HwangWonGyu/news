@@ -36,7 +36,6 @@ public class UserCreateTest {
                 password("비1밀2번3호").
                 nickname("닉네임123이다").
                 phoneNumber("01012345678").
-                isReporter(false).
                 build();
     }
 
