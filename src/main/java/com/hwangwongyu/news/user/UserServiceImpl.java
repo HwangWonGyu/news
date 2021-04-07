@@ -89,16 +89,27 @@ public class UserServiceImpl implements UserService {
             this.mailSender.send(preparator);
             return true;
         }
+        // 아래 Exception들의 상위 클래스 : MailException
         catch (MailSendException ex) {
+            // 대표적으로는
+            // 1. 보안설정, 백신, 방화벽 때문에
+            // 2. SSL 보안수준의 앱이지만 관련 포트를 사용하지 않아서
+            // 3. 잘못된 포트를 사용해서
+            // 메일 서버 연결에 실패했을때 발생
             return false;
         }
         catch (MailAuthenticationException ex) {
+            // 지금 개발중인 이 앱은 gmail SMTP 서버 입장에서는 '보안 수준이 낮은 앱'으로 분류되는데
+            // SMTP 서버에 사용될 계정에서 보안 수준이 낮은 앱과 관련된 설정값에 따라 메일 송신 허용여부가 결정됨
+            // 이때 비허용이라면 발생
             return false;
         }
         catch (MailParseException ex ) {
+            // 메일 파서(Parser)가 MimeMessage, InputStream 등 메일 객체로 파싱 중 실패했을때 발생
             return false;
         }
         catch (MailPreparationException ex ) {
+            // HTML, 템플릿 엔진(예 : Thymeleaf) 등에서 메일 메시지를 렌더링하는데에 실패했을때 발생
             return false;
         }
 
