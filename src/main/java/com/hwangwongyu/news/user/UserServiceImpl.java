@@ -2,7 +2,7 @@ package com.hwangwongyu.news.user;
 
 import com.hwangwongyu.news.redis.UserLoginInfo;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.MailException;
+import org.springframework.mail.*;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
@@ -89,11 +89,21 @@ public class UserServiceImpl implements UserService {
             this.mailSender.send(preparator);
             return true;
         }
-        catch (MailException ex) {
+        // 예외 관리를 한곳에서 용이하게 하기 위해 Global level에서 처리하는 것으로 개선
+        // 에러 로깅 시스템 도입 작업시 이 부분을 로깅 도입으로 개선
+        catch (MailSendException ex) {
             return false;
-            // 예외 관리를 한곳에서 용이하게 하기 위해 Global level에서 처리하는 것으로 개선
-            // 에러 로깅 시스템 도입 작업시 이 부분을 로깅 도입으로 개선
         }
+        catch (MailAuthenticationException ex) {
+            return false;
+        }
+        catch (MailParseException ex ) {
+            return false;
+        }
+        catch (MailPreparationException ex ) {
+            return false;
+        }
+
     }
 
     private String randomAuthNCode(int authNDigitNumberSize) {
