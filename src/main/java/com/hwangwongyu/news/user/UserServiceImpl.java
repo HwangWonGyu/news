@@ -89,8 +89,6 @@ public class UserServiceImpl implements UserService {
             this.mailSender.send(preparator);
             return true;
         }
-        // 예외 관리를 한곳에서 용이하게 하기 위해 Global level에서 처리하는 것으로 개선
-        // 에러 로깅 시스템 도입 작업시 이 부분을 로깅 도입으로 개선
         catch (MailSendException ex) {
             return false;
         }
