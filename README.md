@@ -33,6 +33,8 @@
 - Spring Boot 2.4.1
 - MyBatis 3.5.6
 - MySQL 8.0.22
+- JUnit 5.7
+- Mockito 3.6
 - Redis _? (AWS EC2에 설치 후 기입)_
 - 이메일 송신 서버 gmail SMTP
 - AWS EC2 t2.micro 인스턴스 1대
