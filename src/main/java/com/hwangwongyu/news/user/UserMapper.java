@@ -18,9 +18,12 @@ public interface UserMapper {
 
     UserDTO findUserById(long id);
 
+    UserDTO findUserByLoginId(String loginId);
+
+    UserDTO findUserByNickname(String nickname);
+
     String getPassword(String loginId);
 
     UserDTO findUser(UserLoginInfo userLoginInfo);
 
-    List<String> allCompanies();
 }

@@ -1,32 +1,24 @@
 package com.hwangwongyu.news.user;
 
 import com.hwangwongyu.news.redis.UserLoginInfo;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.*;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
-import javax.mail.Message;
-import javax.mail.internet.InternetAddress;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
 
-    private final JavaMailSender mailSender;
-
-    @Value("${spring.mail.auth-digit-number-size}")
-    private Integer authNDigitNumberSize;
-
-    public UserServiceImpl(UserMapper userMapper, JavaMailSender mailSender) {
+    public UserServiceImpl(UserMapper userMapper) {
         this.userMapper = userMapper;
-        this.mailSender = mailSender;
     }
 
     @Override
@@ -35,7 +27,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer addUser(UserDTO user) {
+    public Integer addUser(UserDTO user) throws DuplicateKeyException {
+        UserDTO sameLoginIdUser = userMapper.findUserByLoginId(user.getLoginId());
+        if (sameLoginIdUser != null) {
+            throw new DuplicateKeyException("이미 등록된 아이디 입니다.");
+        }
+
+        UserDTO sameNicknameUser = userMapper.findUserByNickname(user.getNickname());
+        if (sameNicknameUser != null) {
+            throw new DuplicateKeyException("이미 등록된 닉네임 입니다.");
+        }
+
         return userMapper.addUser(user);
     }
 
@@ -52,6 +54,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO findUserById(long id) {
         return userMapper.findUserById(id);
+    }
+
+    @Override
+    public UserDTO findUserByLoginId(String loginId) {
+        return userMapper.findUserByLoginId(loginId);
+    }
+
+    @Override
+    public UserDTO findUserByNickname(String nickname) {
+        return userMapper.findUserByNickname(nickname);
     }
 
     @Override
@@ -132,6 +144,5 @@ public class UserServiceImpl implements UserService {
     public List<String> allCompanies() {
         return userMapper.allCompanies();
     }
-
 
 }
