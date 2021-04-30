@@ -20,4 +20,8 @@ public interface UserService {
     UserDTO loginUser(UserLoginInfo userLoginInfo);
 
     void logout(HttpSession httpSession);
+
+    Boolean sendEmailAuthNCode(String toEmail);
+
+    List<String> allCompanies();
 }
