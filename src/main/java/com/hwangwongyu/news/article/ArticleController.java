@@ -1,6 +1,7 @@
 package com.hwangwongyu.news.article;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,7 @@ public class ArticleController {
     @GetMapping("/articles/{id}")
     public ArticleDTO findArticleById(@PathVariable long id) {
         ArticleDTO article = articleService.findArticleById(id);
-        if(article != null)
+        if(ObjectUtils.isEmpty(article) == false)
             return article;
         else
             return null;

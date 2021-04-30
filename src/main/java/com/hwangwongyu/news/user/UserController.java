@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -46,7 +47,8 @@ public class UserController {
     @GetMapping("/users/{id}")
     public ResponseEntity findUserById(@PathVariable long id) {
         UserDTO user = userService.findUserById(id);
-        if (user != null)
+
+        if(ObjectUtils.isEmpty(user) == false)
             return new ResponseEntity(user, HttpStatus.OK);
         else
             return new ResponseEntity("유저 정보가 없습니다", HttpStatus.NOT_FOUND);
