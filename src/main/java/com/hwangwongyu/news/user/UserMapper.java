@@ -26,4 +26,5 @@ public interface UserMapper {
 
     UserDTO findUser(UserLoginInfo userLoginInfo);
 
+    List<String> allCompanies();
 }

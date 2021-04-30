@@ -27,5 +27,6 @@ public class UserDTO {
     private String password;
     private String nickname;
     private String phoneNumber;
+    private Boolean isReporter;
 }
 

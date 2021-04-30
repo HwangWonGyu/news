@@ -1,24 +1,33 @@
 package com.hwangwongyu.news.user;
 
 import com.hwangwongyu.news.redis.UserLoginInfo;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.mail.*;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
+import javax.mail.Message;
+import javax.mail.internet.InternetAddress;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
 
-    public UserServiceImpl(UserMapper userMapper) {
+    private final JavaMailSender mailSender;
+
+    @Value("${spring.mail.auth-digit-number-size}")
+    private Integer authNDigitNumberSize;
+
+    public UserServiceImpl(UserMapper userMapper, JavaMailSender mailSender) {
         this.userMapper = userMapper;
+        this.mailSender = mailSender;
     }
 
     @Override

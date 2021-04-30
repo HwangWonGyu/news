@@ -25,4 +25,7 @@ public interface UserService {
 
     void logout(HttpSession httpSession);
 
+    Boolean sendEmailAuthNCode(String toEmail);
+
+    List<String> allCompanies();
 }
