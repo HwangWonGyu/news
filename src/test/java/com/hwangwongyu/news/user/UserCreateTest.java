@@ -15,6 +15,18 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 
+/*
+ JUnit : 자바와 JVM 계열의 언어(예 : 코틀린)에서 사용하는 단위 테스트 프레임워크를 말한다.
+
+ Mockito : 단위 테스트를 위한 자바 Mocking 프레임워크 중 하나이다.
+ 테스트 대역(Test Double)의 종류 중 모의(Mock) 객체를 필요로 할 때 사용한다.
+
+ 테스트 대역(Test Double) : 테스트하려는 객체와 연관된 객체를 사용하기가 어렵고 모호할 때 대신해 줄 수 있는 객체를 말한다.
+
+ 모의(Mock) 객체 : 호출했을 때 사전에 정의된 명세대로의 결과를 돌려주도록 미리 프로그램 돼있는 것이다.
+ 예상치 못한 호출이 있을 경우 예외를 던질 수 있으며 모든 호출이 예상된 것이었는지 확인할 수 있다.
+ */
+
 @ExtendWith(MockitoExtension.class)
 public class UserCreateTest {
 
