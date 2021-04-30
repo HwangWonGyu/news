@@ -7,7 +7,9 @@ import java.time.LocalDate;
 
 @Getter
 @ToString
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class UserDTO {
 
     @Getter
@@ -26,3 +28,4 @@ public class UserDTO {
     private String nickname;
     private String phoneNumber;
 }
+

@@ -13,8 +13,7 @@ public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService)
-    {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -28,8 +27,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public String addUser(@RequestBody UserDTO user)
-    {
+    public String addUser(@RequestBody UserDTO user) {
         userService.addUser(user);
         return "redirect:" + indexURL;
     }
@@ -41,24 +39,19 @@ public class UserController {
     }
 
     @DeleteMapping("/users")
-    public String deleteUser(@RequestBody UserDTO user)
-    {
+    public String deleteUser(@RequestBody UserDTO user) {
         userService.deleteUser(user.getLoginId());
         return "redirect:" + indexURL;
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<UserDTO> findUserById(@PathVariable long id)
-    {
+    public ResponseEntity findUserById(@PathVariable long id) {
         UserDTO user = userService.findUserById(id);
+
         if(ObjectUtils.isEmpty(user) == false)
             return new ResponseEntity(user, HttpStatus.OK);
         else
             return new ResponseEntity("유저 정보가 없습니다", HttpStatus.NOT_FOUND);
     }
-
-
-
-
 
 }

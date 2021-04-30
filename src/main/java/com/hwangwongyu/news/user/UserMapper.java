@@ -1,5 +1,6 @@
 package com.hwangwongyu.news.user;
 
+import com.hwangwongyu.news.redis.UserLoginInfo;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -16,4 +17,13 @@ public interface UserMapper {
     Integer deleteUser(String loginId);
 
     UserDTO findUserById(long id);
+
+    UserDTO findUserByLoginId(String loginId);
+
+    UserDTO findUserByNickname(String nickname);
+
+    String getPassword(String loginId);
+
+    UserDTO findUser(UserLoginInfo userLoginInfo);
+
 }
