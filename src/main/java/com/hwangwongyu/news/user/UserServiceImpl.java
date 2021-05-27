@@ -1,6 +1,5 @@
 package com.hwangwongyu.news.user;
 
-import com.hwangwongyu.news.redis.UserLoginInfo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.mail.*;
@@ -10,9 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
-import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -73,27 +70,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO findUserByNickname(String nickname) {
         return userMapper.findUserByNickname(nickname);
-    }
-
-    @Override
-    public UserDTO loginUser(UserLoginInfo userLoginInfo) {
-
-        String matchedPassword =
-                Optional.ofNullable(userMapper.getPassword(userLoginInfo.getLoginId()))
-                        .filter(o -> o.equals(userLoginInfo.getPassword()))
-                        .orElse("");
-
-        if (matchedPassword.isEmpty()) {
-            return null;
-        } else {
-            return userMapper.findUser(userLoginInfo);
-        }
-
-    }
-
-    @Override
-    public void logout(HttpSession httpSession) {
-        httpSession.invalidate();
     }
 
     @Override
