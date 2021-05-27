@@ -2,6 +2,7 @@ package com.hwangwongyu.news.user;
 
 import java.util.List;
 
+import com.hwangwongyu.news.login.CheckLogin;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,12 +33,14 @@ public class UserController {
     }
 
     @PutMapping("/users")
+    @CheckLogin
     public String updateUser(@RequestBody UserDTO user) {
         userService.updateUser(user);
         return "redirect:" + indexURL;
     }
 
     @DeleteMapping("/users")
+    @CheckLogin
     public String deleteUser(@RequestBody UserDTO user) {
         userService.deleteUser(user.getLoginId());
         return "redirect:" + indexURL;

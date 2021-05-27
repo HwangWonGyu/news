@@ -1,5 +1,6 @@
 package com.hwangwongyu.news.article;
 
+import com.hwangwongyu.news.login.CheckLogin;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ public class ArticleController {
     private String newsHomeURL;
 
     @PostMapping("/articles")
+    @CheckLogin
     public String addArticle(@Valid @RequestBody ArticleDTO article, BindingResult result) {
         if (result.hasErrors()) {
             return "articles/createOrUpdateArticleForm";
